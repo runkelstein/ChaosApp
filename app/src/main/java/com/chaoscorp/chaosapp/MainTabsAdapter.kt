@@ -1,4 +1,4 @@
-package com.chaos.databinding
+package com.chaoscorp.chaosapp
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

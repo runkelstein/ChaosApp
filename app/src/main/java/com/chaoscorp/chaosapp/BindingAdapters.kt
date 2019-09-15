@@ -1,4 +1,4 @@
-package com.chaos.databinding
+package com.chaoscorp.chaosapp
 
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout

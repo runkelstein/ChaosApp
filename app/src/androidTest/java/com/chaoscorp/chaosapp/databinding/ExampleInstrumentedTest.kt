@@ -1,4 +1,4 @@
-package com.chaos.databinding
+package com.chaoscorp.chaosapp.databinding
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.chaos.databinding", appContext.packageName)
+        assertEquals("com.chaoscorp.chaosapp", appContext.packageName)
     }
 }

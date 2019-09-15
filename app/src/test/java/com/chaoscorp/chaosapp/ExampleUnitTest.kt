@@ -1,4 +1,4 @@
-package com.chaos.databinding
+package com.chaoscorp.chaosapp
 
 import org.junit.Test
 

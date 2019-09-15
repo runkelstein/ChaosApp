@@ -8,7 +8,7 @@
 
         <variable
                 name="handler"
-                type="com.chaos.databinding.MainActivity"/>
+                type="com.chaoscorp.chaosapp.MainActivity"/>
 
         <variable
                 name="manager"
@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="com.chaos.databinding.MainActivity">
+            tools:context="com.chaoscorp.chaosapp.MainActivity">
 
 
         <com.google.android.material.tabs.TabLayout
