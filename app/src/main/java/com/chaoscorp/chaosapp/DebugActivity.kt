@@ -10,14 +10,15 @@ import android.widget.TextView
 import com.chaoscorp.chaosServer.client.ClientBuilder
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-//import kotlin.coroutines.CoroutineContext
-//import kotlinx.coroutines.*
-//import kotlinx.coroutines.android.*
+import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.*
+import kotlinx.coroutines.android.*
 
-class DebugActivity : AppCompatActivity() {
+class DebugActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispatchers.Default) {
 
-    lateinit var  idToken : String;
-    lateinit var  yamlObjectMapper : ObjectMapper
+    private lateinit var  idToken : String;
+    private lateinit var  yamlObjectMapper : ObjectMapper
+    private val mainScope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,11 +52,20 @@ class DebugActivity : AppCompatActivity() {
     fun onLoadListClicked(view : View) {
 
         val id = findViewById<EditText>(R.id.edListId)?.text?.toString()?.toLongOrNull() ?: return;
-        val client= ClientBuilder.createChaosListClient("https://chaoscorp.org:8443", idToken);
-        val userDto = client.googleSignIn()
-        val listDto = client.getList(id)
-        val yamlText = yamlObjectMapper.writeValueAsString(listDto)
-        findViewById<TextView>(R.id.debug_text_view).setText(yamlText)
+
+        launch {
+            println("Net: I'm working in thread ${Thread.currentThread().name}")
+            val client= ClientBuilder.createChaosListClient("https://chaoscorp.org:8443", idToken);
+            val userDto = client.googleSignIn()
+            val listDto = client.getList(id)
+            val yamlText = yamlObjectMapper.writeValueAsString(listDto)
+
+            launch(mainScope.coroutineContext) {
+                println("UI: I'm working in thread ${Thread.currentThread().name}")
+                findViewById<TextView>(R.id.debug_text_view).setText(yamlText)
+            }
+
+        }
 
     }
 

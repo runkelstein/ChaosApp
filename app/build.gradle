@@ -71,6 +71,6 @@ dependencies {
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion"
 
-    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinXAndroidCoroutinesVersion"
 
 }
