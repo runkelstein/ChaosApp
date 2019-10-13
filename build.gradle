@@ -39,6 +39,7 @@ ext {
 
     chaosLibVersion = "0.0.2-SNAPSHOT"
     jacksonVersion = "2.9.7"
+    kotlinXAndroidCoroutinesVersion = "1.3.2"
 }
 
 
