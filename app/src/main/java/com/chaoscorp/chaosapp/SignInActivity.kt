@@ -15,14 +15,13 @@ import com.google.android.gms.tasks.Task
 import com.google.android.gms.common.api.ApiException
 
 
+class SignInActivity : AppCompatActivity() {
 
-
-class SignInActivity :  AppCompatActivity() {
-
-    lateinit var googleSignInClient : GoogleSignInClient
+    lateinit var googleSignInClient: GoogleSignInClient
 
     private object RequestCodes {
-        val SignIn = 9001;
+        val SignIn = 9001
+        val Debug = 42
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class SignInActivity :  AppCompatActivity() {
     fun OnSignInClicked(v: View) {
 
         val signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RequestCodes.SignIn);
+        startActivityForResult(signInIntent, RequestCodes.SignIn)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -66,10 +65,11 @@ class SignInActivity :  AppCompatActivity() {
             val account = completedTask?.getResult(ApiException::class.java)
             // Signed in successfully, show authenticated UI.
             updateUI(account)
+            startDebugActivity(account);
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("SignInActivity","signInResult:failed code=" + e.statusCode)
+            Log.w("SignInActivity", "signInResult:failed code=" + e.statusCode)
             updateUI(null)
         }
 
@@ -80,19 +80,28 @@ class SignInActivity :  AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        updateUI(account)
+//        val account = GoogleSignIn.getLastSignedInAccount(this)
+//        updateUI(account)
+
     }
 
     private fun updateUI(account: GoogleSignInAccount?) {
 
-        if (account==null) {
+        if (account == null) {
             println("login of failed!!!!!!##*+?´ß9!!")
         } else {
             println("login of user ${account.email} was sucessfull! Token is ${account.idToken}")
         }
 
-
     }
 
+    fun startDebugActivity(account: GoogleSignInAccount?) {
+
+        val intent = Intent(this, DebugActivity::class.java)
+        // To pass any data to next activity
+       intent.putExtra("idToken", account?.idToken)
+
+        // start your next activity
+        startActivity(intent)
+    }
 }

@@ -36,6 +36,9 @@ ext {
     archLifecycleVersion = '2.1.0-alpha03'
 
     googlePlayServicesVersion = '17.0.0'
+
+    chaosLibVersion = "0.0.2-SNAPSHOT"
+    jacksonVersion = "2.9.7"
 }
 
 
