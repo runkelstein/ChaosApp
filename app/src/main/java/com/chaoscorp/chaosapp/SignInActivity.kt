@@ -6,13 +6,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.common.SignInButton
 
 import android.content.Intent
 import android.view.View
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.common.api.ApiException
+import kotlinx.android.synthetic.main.activity_signin.*
 
 
 class SignInActivity : AppCompatActivity() {
@@ -35,10 +35,8 @@ class SignInActivity : AppCompatActivity() {
             .requestIdToken("683726251045-5j13qabg3ci39rjulvftq7cj7t5t90o0.apps.googleusercontent.com")
             .build()
 
-
-
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-        findViewById<SignInButton>(R.id.sign_in_button).setOnClickListener(::OnSignInClicked)
+        sign_in_button.setOnClickListener(::OnSignInClicked)
 
     }
 
@@ -79,10 +77,6 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
-//        val account = GoogleSignIn.getLastSignedInAccount(this)
-//        updateUI(account)
-
     }
 
     private fun updateUI(account: GoogleSignInAccount?) {
