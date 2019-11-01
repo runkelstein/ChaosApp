@@ -36,7 +36,7 @@ android {
 repositories {
 
     maven {
-        url   = uri("https://chaoscorp.org:743")
+        url = uri("https://chaoscorp.org:743")
         credentials {
             username = System.getProperty("chaosMavenUser")
             password = System.getProperty("chaosMavenPassword")
